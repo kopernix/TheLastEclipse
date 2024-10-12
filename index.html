@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>The-Last-Eclipse</title>
+  <title>Cuenta Atrás SOL -> Gigante Roja</title>
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap" rel="stylesheet">
   <style>
     body {
@@ -54,7 +54,7 @@
 </head>
 <body>
   <div class="title" id="title">
-    <h1>The-Last-Eclipse</h1>
+    <h1>Fin del Sistema Solar</h1>
   </div>
 
   <div class="countdown" id="countdown">
@@ -80,44 +80,75 @@ Este es mi regalo intangible, a él y a su preciosa e increíble mamá, cuyo amo
 
   <script>
     function countdownToGiantRed() {
-      console.log("Initializing countdown to Giant Red...");
-      
-      // Calcular la diferencia en años desde el año actual hasta 5000002016
-      const currentYear = new Date().getFullYear();
-      const targetYear = 5000002016;
-      const yearsUntilEvent = targetYear - currentYear;
-      console.log("Years until event:", yearsUntilEvent);
-      
-      const countdownElement = document.getElementById('time');
-      
-      function updateCountdown() {
-        const currentTime = new Date();
-        const diffInYears = targetYear - currentTime.getFullYear();
+      const targetDate = {
+        year: 5000002016n,  // Utilizamos 'n' para indicar que es un BigInt
+        month: 7n,          // Julio
+        day: 7n
+      };
 
-        if (diffInYears <= 0) {
-          console.log("Countdown finished.");
+      const countdownElement = document.getElementById('time');
+
+      function updateCountdown() {
+        const now = new Date();
+        const currentYear = BigInt(now.getFullYear());
+        const currentMonth = BigInt(now.getMonth() + 1); // Los meses en JavaScript son base 0
+        const currentDay = BigInt(now.getDate());
+        const currentHour = BigInt(now.getHours());
+        const currentMinute = BigInt(now.getMinutes());
+        const currentSecond = BigInt(now.getSeconds());
+
+        // Cálculo de diferencias
+        let deltaYears = targetDate.year - currentYear;
+        let deltaMonths = targetDate.month - currentMonth;
+        let deltaDays = targetDate.day - currentDay;
+        let deltaHours = -currentHour;
+        let deltaMinutes = -currentMinute;
+        let deltaSeconds = -currentSecond;
+
+        // Ajuste de valores negativos
+        if (deltaSeconds < 0n) {
+          deltaSeconds += 60n;
+          deltaMinutes--;
+        }
+        if (deltaMinutes < 0n) {
+          deltaMinutes += 60n;
+          deltaHours--;
+        }
+        if (deltaHours < 0n) {
+          deltaHours += 24n;
+          deltaDays--;
+        }
+        if (deltaDays < 0n) {
+          deltaDays += 30n; // Aproximación de 30 días por mes
+          deltaMonths--;
+        }
+        if (deltaMonths < 0n) {
+          deltaMonths += 12n;
+          deltaYears--;
+        }
+
+        // Verificar si la cuenta regresiva ha terminado
+        if (deltaYears < 0n) {
           countdownElement.innerHTML = "¡Es el fin! El sol se ha convertido en una gigante roja.";
           return;
         }
 
-        const days = Math.floor((365.25 * (diffInYears - Math.floor(diffInYears))));
-        const hours = currentTime.getHours();
-        const minutes = currentTime.getMinutes();
-        const seconds = currentTime.getSeconds();
+        // Formateo de salida con ceros iniciales
+        const formattedHours = deltaHours.toString().padStart(2, '0');
+        const formattedMinutes = deltaMinutes.toString().padStart(2, '0');
+        const formattedSeconds = deltaSeconds.toString().padStart(2, '0');
 
-        const formattedSeconds = seconds < 10 ? '0' + seconds : seconds;
-        const formattedMinutes = minutes < 10 ? '0' + minutes : minutes;
-        const formattedHours = hours < 10 ? '0' + hours : hours;
-
-        console.log(`Remaining time: ${diffInYears}y ${days}d ${formattedHours}h ${formattedMinutes}m ${formattedSeconds}s`);
-        countdownElement.innerHTML = `${diffInYears}y ${days}d ${formattedHours}h ${formattedMinutes}m ${formattedSeconds}s`;
+        // Mostrar la cuenta regresiva
+        countdownElement.innerHTML = `${deltaYears}y ${deltaMonths}m ${deltaDays}d ${formattedHours}h ${formattedMinutes}m ${formattedSeconds}s`;
       }
 
+      // Actualizar la cuenta regresiva inicialmente y luego cada segundo
       updateCountdown();
       setInterval(updateCountdown, 1000);
     }
 
     countdownToGiantRed();
   </script>
+    
 </body>
 </html>
