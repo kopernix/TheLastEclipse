@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The-Last-Eclipse</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      background: url('https://i.imgur.com/FjeLbo3.jpg') no-repeat center center fixed;
+      background-size: cover;
+      font-family: 'Orbitron', sans-serif;
+    }
+    .countdown {
+      color: #fff;
+      text-shadow: 0 0 20px #ff4500;
+      font-size: 3em;
+      text-align: center;
+    }
+    .title {
+      color: #fff;
+      text-shadow: 0 0 20px #ff4500;
+      font-size: 2em;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .label {
+      font-size: 0.3em;
+      text-transform: uppercase;
+      letter-spacing: 5px;
+      margin-top: 10px;
+    }
+    
+      .text1 {
+      color: #fff;
+      text-shadow: 0 0 20px #ff4500;
+      font-size: 1.0em;
+      text-align: center;
+      margin-top: 10px;
+      margin-bottom: 10px;
+      margin-left: 20px;
+      margin-right: 20px;
+    }
+    
+  </style>
+</head>
+<body>
+  <div class="title" id="title">
+    <h1>The-Last-Eclipse</h1>
+  </div>
+
+  <div class="countdown" id="countdown">
+    <div id="time"></div>
+    <div class="label">Hasta el Sol se convierta en una Gigante Roja</div>
+  </div>
+  
+  <div class="text1">
+<p>  
+Mi hijo me hizo la solicitud más especial del mundo: que le regalara un contador que marcara el tiempo hasta el día en que el Sol se convierta en una gigante roja. No era simplemente un proyecto, sino un sueño que quería compartir conmigo. Así que, juntos, nos sentamos frente al ordenador y comenzamos a escribir líneas de código. Mi pequeño explorador del universo y yo, tratando de convertir lo infinito en algo que pudiéramos entender. Su sonrisa es la fuerza más grande que conozco, incluso más que el Sol.</p>
+
+<p>
+Este contador tiene algo de trampa. No es exacto, ni podría serlo. Los números que llenan la pantalla son una representación de nuestro sueño compartido, una forma de abrazar lo desconocido y darle forma a lo que nunca veremos. Porque aunque ni él ni yo estaremos aquí cuando ese día llegue, quiero pensar que en algún rincón de nuestros efímeros multiversos, ese contador llegará a cero. Y quizás, en ese lugar, lo estaremos viendo juntos, tomados de la mano, con esa complicidad que solo se tiene con alguien a quien amas más que a nada.</p>
+
+<p>
+Mi hijo es la persona más especial del mundo (creedme cuando lo digo, y no es porque sea su padre, os puedo asegurar que es muy especial), y hacer este pequeño proyecto con él me ha demostrado una vez más que no se trata del destino, sino del viaje. Aunque haya desafíos que otros no puedan ver, su valentía y su manera de enfrentar el mundo me inspiran cada día. Este código, sencillo, hecho con HTML, CSS y JavaScript, lleno de pequeños errores, quedará en algún lugar, copiado y replicado en copias de seguridad en algún rincón; y así, este pedacito de amor quedará para siempre, como el testimonio de un sueño compartido entre un padre y su hijo, un sueño que va más allá de los años, más allá del tiempo, más allá del fin del Sol.
+</p>
+
+<p>
+Este es mi regalo intangible, a él y a su preciosa e increíble mamá, cuyo amor y dedicación son igualmente mi razón por la que cada pequeño momento brilla con tanta fuerza.
+</p>
+  </div>
+
+  <script>
+    function countdownToGiantRed() {
+      console.log("Initializing countdown to Giant Red...");
+      
+      // Calcular la diferencia en años desde el año actual hasta 5000002016
+      const currentYear = new Date().getFullYear();
+      const targetYear = 5000002016;
+      const yearsUntilEvent = targetYear - currentYear;
+      console.log("Years until event:", yearsUntilEvent);
+      
+      const countdownElement = document.getElementById('time');
+      
+      function updateCountdown() {
+        const currentTime = new Date();
+        const diffInYears = targetYear - currentTime.getFullYear();
+
+        if (diffInYears <= 0) {
+          console.log("Countdown finished.");
+          countdownElement.innerHTML = "¡Es el fin! El sol se ha convertido en una gigante roja.";
+          return;
+        }
+
+        const days = Math.floor((365.25 * (diffInYears - Math.floor(diffInYears))));
+        const hours = currentTime.getHours();
+        const minutes = currentTime.getMinutes();
+        const seconds = currentTime.getSeconds();
+
+        const formattedSeconds = seconds < 10 ? '0' + seconds : seconds;
+        const formattedMinutes = minutes < 10 ? '0' + minutes : minutes;
+        const formattedHours = hours < 10 ? '0' + hours : hours;
+
+        console.log(`Remaining time: ${diffInYears}y ${days}d ${formattedHours}h ${formattedMinutes}m ${formattedSeconds}s`);
+        countdownElement.innerHTML = `${diffInYears}y ${days}d ${formattedHours}h ${formattedMinutes}m ${formattedSeconds}s`;
+      }
+
+      updateCountdown();
+      setInterval(updateCountdown, 1000);
+    }
+
+    countdownToGiantRed();
+  </script>
+</body>
+</html>
