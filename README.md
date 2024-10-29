@@ -21,7 +21,9 @@ This project is dedicated to my amazing child, the most special person in my lif
 ## How to Run
 1. Clone the repository.
 2. Open `index.html` in any web browser.
-3. Enjoy the countdown, and remember: it’s not about the destination, but the journey we share.
+3. .. or visit https://thelasteclipse.kopernix.com
+4. Enjoy the countdown, and remember: it’s not about the destination, but the journey we share.
+
 
 ## Contributions
 This project is open to contributions that align with its spirit. Please keep it non-commercial, family-friendly, and maintain the sense of wonder and love that inspired its creation.
